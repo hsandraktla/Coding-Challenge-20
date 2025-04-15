@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//Task 1: Fetch & Store Tour Data
+import React, { useState, useEffect } from "react"; //Importing React and hooks
 
-function App() {
-  const [count, setCount] = useState(0)
+function App() { 
+  const [tours, setTours] = useState([]); //Use useState to store tours
+  const [loading, setLoading] = useState(true); //State to manage loading
+  const [error, setError] = useState(null); //State to manage error
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => { //Effect to fetch data on component mount
+    const fetchTours = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("https://course-api.com/react-tours-project"); //Fetch data from API
+        if (!response.ok) {
+          throw new Error("Failed to fetch tours"); //Check if response is ok
+        }
+        const data = await response.json(); 
+        setTours(data);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTours(); //Call the fetch function
+  }, []);
+
+  if (loading) { //Check if loading
+    return <div>Loading...</div>;
+  }
+
+  if (error) { //Check if there is an error
+    return <div>Error: {error}</div>;
+  }
+
+  return ( 
+    <div>
+      <h1>Available Tours</h1> 
+      <ul>
+        {tours.map((tour) => (
+          <li key={tour.id}>{tour.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+//Exporting the App component
+export default App;
