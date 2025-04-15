@@ -45,13 +45,13 @@ function App() {
 
   return (
     <main>
-      <h1 className="title">Tour Destination Selector</h1>
-      <DestinationSelector
-        tours={tours}
+      <h1 className="title">Tour Destination Selector</h1> {/*Main title of the app*/}
+      <DestinationSelector {/*Pass the tours, selected destination, and functions to DestinationSelector*/}
+        tours={tours} 
         selected={selectedDestination}
         setSelected={setSelectedDestination}
       />
-      <Gallery
+      <Gallery {/*Pass the tours, loading state, error message, selected destination, and functions to Gallery*/}
         tours={tours}
         loading={loading}
         error={error}
