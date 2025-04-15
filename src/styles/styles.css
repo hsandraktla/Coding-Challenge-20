@@ -1,0 +1,172 @@
+/* ---------- GLOBAL STYLES ---------- */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #fdf6f3;
+    margin: 0;
+    padding: 2rem;
+    color: #2c2c2c;
+  }
+  
+  main {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* ---------- HEADER ---------- */
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    background: linear-gradient(to right, #8b1e3f, #b3475b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+  }
+  
+  /* ---------- DROPDOWN SELECTOR ---------- */
+  .selector {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .selector label {
+    margin-right: 1rem;
+    font-weight: 600;
+  }
+  
+  .selector select {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 2px solid #b3475b;
+    font-size: 1rem;
+    background-color: #fff6f8;
+    color: #5a2a3c;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .selector select:hover {
+    border-color: #8b1e3f;
+  }
+  
+  /* ---------- TOUR GALLERY ---------- */
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+    gap: 2rem;
+    padding: 2rem;
+    min-height: 100vh; /* Ensures full viewport height */
+  }
+  
+  /* ---------- TOUR CARD ---------- */
+  .tour-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+    width: 00%;
+    max-width: 400px;
+  }
+  
+  .tour-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .tour-card img {
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tour-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tour-price {
+    color: #8b1e3f;
+    font-weight: bold;
+  }
+  
+  /* ---------- BUTTONS ---------- */
+  button {
+    background-color: #8b1e3f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  button:hover {
+    background-color: #a62c4f;
+  }
+  
+  .read-more {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    background: none;
+    color: #8b1e3f;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .read-more:hover {
+    color: #a62c4f;
+  }
+  
+  /* ---------- EMPTY STATE ---------- */
+  .message,
+  .loader,
+  .error {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+  }
+  
+  /* ---------- LOADER ---------- */
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #8b1e3f;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* ---------- RESPONSIVE DESIGN ---------- */
+  @media (min-width: 768px) {
+    .gallery {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  
+    .tour-card {
+      flex: 1 1 calc(50% - 2rem);
+      max-width: calc(50% - 2rem);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .tour-card {
+      flex: 1 1 calc(33.333% - 2rem);
+      max-width: calc(33.333% - 2rem);
+    }
+  }

@@ -1,30 +1,28 @@
-//Task 3: Render Tour Cards
 import React, { useState } from 'react';
 
-const TourCard = ({ tour, onRemove }) => {
-    return (
-        <div className="tour-card">
-            <h2>{tour.name}</h2>
-            <p>{tour.description}</p>
-            <button onClick={() => onRemove(tour.id)}>Not Interested</button>
-        </div>
-    );
-};
-
-const TourGallery = ({ tours }) => {
-    const [tourList, setTourList] = useState(tours);
-
-    const handleRemove = (id) => {
-        setTourList(tourList.filter((tour) => tour.id !== id));
-    };
+const TourCard = ({ id, name, info, image, price, onRemove }) => {
+    const [readMore, setReadMore] = useState(false);
 
     return (
-        <div className="tour-gallery">
-            {tourList.map((tour) => (
-                <TourCard key={tour.id} tour={tour} onRemove={handleRemove} />
-            ))}
+    <article className="tour-card">
+      <img src={image} alt={name} />
+      <footer>
+        <div className="tour-info">
+          <h4>{name}</h4>
+          <h4 className="tour-price">${price}</h4>
         </div>
-    );
+        <p>
+          {readMore ? info : `${info.slice(0, 100)}...`}
+          <button className="read-more" onClick={() => setReadMore(!readMore)}>
+            {readMore ? "Show Less" : "Read More"}
+          </button>
+        </p>
+        <button className="remove-button" onClick={() => onRemove(id)}>
+          Not Interested
+        </button>
+      </footer>
+    </article>
+  );
 };
 
-export default TourGallery;
+export default TourCard;

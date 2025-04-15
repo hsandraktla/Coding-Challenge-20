@@ -1,34 +1,24 @@
-//Task 2: Create Dropdown Filter
-import React, { useState } from 'react';
+import React from "react";
 
-const DestinationSelector = ({ tours, onFilterChange }) => {
-    // Extract unique destination names
-    const destinations = ['All Destinations', ...new Set(tours.map(tour => tour.name))];
+const DestinationSelector = ({ tours, selected, setSelected }) => {
+  const destinations = ["All Destinations", ...new Set(tours.map((t) => t.name))];
 
-    const [selectedDestination, setSelectedDestination] = useState('All Destinations');
-
-    const handleChange = (event) => {
-        const selected = event.target.value;
-        setSelectedDestination(selected);
-        onFilterChange(selected === 'All Destinations' ? null : selected);
-    };
-
-    return (
-        <div>
-            <label htmlFor="destination-select">Choose a destination: </label>
-            <select
-                id="destination-select"
-                value={selectedDestination}
-                onChange={handleChange}
-            >
-                {destinations.map((destination, index) => (
-                    <option key={index} value={destination}>
-                        {destination}
-                    </option>
-                ))}
-            </select>
-        </div>
-    );
+  return (
+    <div className="selector">
+      <label htmlFor="destination">Choose a destination: </label>
+      <select
+        id="destination"
+        value={selected}
+        onChange={(e) => setSelected(e.target.value)}
+      >
+        {destinations.map((dest, index) => (
+          <option key={index} value={dest}>
+            {dest}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 };
 
 export default DestinationSelector;
